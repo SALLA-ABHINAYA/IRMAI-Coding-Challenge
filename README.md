@@ -1,6 +1,6 @@
 # IRMAI Internship Challenge Projects
-#NOTE:
-** Above files are zipped,click on raw to view the files.
+# NOTE:  Above files are zipped,click on raw to view the files.
+
 ## Project 1: Stock Trade Outlier Analysis using Graph Database
 **Objective:** Analyze FX trades, identify outliers, and compare actual trade graphs with expected guidelines using a graph database.
 
