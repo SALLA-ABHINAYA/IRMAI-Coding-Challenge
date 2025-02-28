@@ -1,0 +1,34 @@
+#Identify and Store Failure Modes
+
+MATCH (t:Transaction)
+WHERE t.amount > 5000000
+MERGE (f:FailureMode {type: 'High Amount', effect: 'Potential Fraud'})
+MERGE (t)-[:HAS_FAILURE]->(f)
+RETURN t, f
+
+
+# Show All Transactions
+MATCH (t:Transaction) RETURN t LIMIT 50
+
+#Show Transactions with Failure Modes
+MATCH (t:Transaction)-[:HAS_FAILURE]->(f:FailureMode)
+RETURN t, f
+
+
+#Count Failure Transactions
+MATCH (:Transaction)-[:HAS_FAILURE]->(:FailureMode)
+RETURN count(*) AS failure_count
+
+
+#Find Transactions with Multiple Failure Modes
+MATCH (t:Transaction)-[:HAS_FAILURE]->(f:FailureMode)
+WITH t, count(f) AS failure_count
+WHERE failure_count > 1
+RETURN t.transaction_id, failure_count
+
+
+#Find the Most Frequent Failure Mode
+MATCH (:Transaction)-[:HAS_FAILURE]->(f:FailureMode)
+RETURN f.type, count(*) AS occurrences
+ORDER BY occurrences DESC
+LIMIT 1

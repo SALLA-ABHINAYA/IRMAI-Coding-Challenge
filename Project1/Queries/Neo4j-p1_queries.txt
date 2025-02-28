@@ -1,0 +1,28 @@
+#similarity criteria:
+Price difference < 2%
+Trade volume difference < 10%
+Z-score difference < 1.0
+Trades must be within 7 days of each other.
+
+
+
+#Get all nodes
+MATCH(n) return n;
+
+#View All Relationships in the Database
+MATCH (n)-[r]->(m) RETURN n, r, m limit 100;
+
+#to view node
+MATCH (n) RETURN n LIMIT 100;
+
+#-- Check relationship count
+MATCH ()-[r]->() RETURN COUNT(r); 
+
+
+#-- Check node count
+MATCH (n) RETURN COUNT(n);  
+
+
+#delete all records
+MATCH (n)
+DETACH DELETE n;

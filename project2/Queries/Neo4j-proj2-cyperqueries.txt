@@ -1,0 +1,35 @@
+Gap Threshold: Use the 50th percentile (median) as the normal threshold.
+Time Window: Use the 75th percentile to capture most typical trading activity.
+Similarity Threshold: Use one standard deviation for both price and volume variations.
+Min Trade Volume: Use the 10th percentile to exclude outliers at the lower end.
+Max Trade Volume: Use the 90th percentile to exclude extreme high-volume trades.
+
+
+## to run second project 
+command: streamlit run project2_code.py
+
+
+
+# to  visualize the trades with gaps highlighted
+MATCH (t:Trade)
+RETURN t
+
+#delete all 
+MATCH (n) DETACH DELETE n;
+
+
+#View All Trades
+MATCH (t1:Trade)-[:CONSECUTIVE]->(t2:Trade)
+RETURN t1.timestamp, t2.timestamp
+LIMIT 20;
+
+#View Similar Trades graph
+MATCH (t1:Trade)-[:SIMILAR]->(t2:Trade)
+RETURN t1.timestamp, t1.trade_price, t2.timestamp, t2.trade_price
+LIMIT 20;
+
+
+#Visualize the Trade Network:Displays a graph view of trade relationships (CONSECUTIVE and SIMILAR).
+MATCH (t:Trade)-[r]->(t2:Trade)
+RETURN t, r, t2
+LIMIT 50;
