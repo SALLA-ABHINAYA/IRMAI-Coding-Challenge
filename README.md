@@ -13,7 +13,7 @@ This project analyzes stock trade data using Plotly Dash to detect potential out
 - Data filtering based on different criteria
 - Real-time updates for dynamic graph visualization
 
-### Project 2: Stock Trade Gap Analysis using Neo4j and Streamlit
+### Project 2: Stock Trade Gap Analysis 
 This project identifies stock trade price gaps and deviations using Neo4j for relationship modeling and Streamlit for visualization.
 
 #### Features
