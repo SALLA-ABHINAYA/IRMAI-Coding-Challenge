@@ -60,15 +60,10 @@ def get_failure_modes(graph):
 
 def perform_fmea_analysis(transactions_df):
     """Perform FMEA analysis on transactions."""
-    failure_modes = []
-    for _, row in transactions_df.iterrows():
-        if row['amount'] > 5000000:
-            failure_modes.append({
-                'transaction_id': row['transaction_id'],
-                'failure_mode': 'High Amount',
-                'effect': 'Potential Fraud'
-            })
-    return pd.DataFrame(failure_modes)
+    failure_df = transactions_df[transactions_df["amount"] > 5000000].copy()
+    failure_df["failure_mode"] = "High Transaction Amount"
+    failure_df["effect"] = "Risk of Fraud or Regulatory Concern"
+    return failure_df
 
 def visualize_transactions(transactions_df, fmea_results):
     """Plot transactions and highlight failure modes."""
